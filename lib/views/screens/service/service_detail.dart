@@ -67,7 +67,7 @@ class ServiceDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    100.height,
+                    80.height,
                     Align(
                       alignment: Alignment.center,
                       child: Text(
