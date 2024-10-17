@@ -1,12 +1,13 @@
 import 'package:codagetest/core/models/service_model.dart';
 import 'package:codagetest/core/repositories/service_list_repo.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class ServicePreviewViewModel extends GetxController {
   var servicePreviews = <ServicePreview>[].obs;
   var isLoading = true.obs;
 
-  final ServiceListRepo _serviceListRepo = ServiceListRepo();
+  final ServiceRepo _serviceListRepo = ServiceRepo();
 
   @override
   void onInit() {
@@ -17,12 +18,14 @@ class ServicePreviewViewModel extends GetxController {
   void fetchServicePreviews() async {
     try {
       isLoading(true);
-      var previews = await _serviceListRepo.getServicePreviews();
+      var previews = await _serviceListRepo.fetchServicePreviews();
       if (previews.isNotEmpty) {
         servicePreviews.value = previews;
       }
     } catch (e) {
-      print('Error: $e');
+      if (kDebugMode) {
+        print('Error: $e');
+      }
     } finally {
       isLoading(false);
     }

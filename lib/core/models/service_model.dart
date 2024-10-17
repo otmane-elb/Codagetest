@@ -19,7 +19,6 @@ class ServiceModel {
     this.contractDetails,
   });
 
-  // Factory method to create a ServiceModel from JSON
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
     return ServiceModel(
       serviceName: json['serviceName'] as String?,
@@ -35,7 +34,6 @@ class ServiceModel {
     );
   }
 
-  // Method to convert a ServiceModel to JSON
   Map<String, dynamic> toJson() {
     return {
       'serviceName': serviceName,
@@ -49,12 +47,10 @@ class ServiceModel {
     };
   }
 
-  // Factory method to create a List of ServiceModel from JSON
   static List<ServiceModel> fromJsonList(List<dynamic> jsonList) {
     return jsonList.map((json) => ServiceModel.fromJson(json)).toList();
   }
 
-  // Method to convert a List of ServiceModel to JSON
   static List<Map<String, dynamic>> toJsonList(List<ServiceModel> services) {
     return services.map((service) => service.toJson()).toList();
   }
@@ -75,7 +71,6 @@ class SubtaskModel {
     this.isCompleted,
   });
 
-  // Factory method to create a SubtaskModel from JSON
   factory SubtaskModel.fromJson(Map<String, dynamic> json) {
     return SubtaskModel(
       description: json['description'] as String?,
@@ -86,7 +81,6 @@ class SubtaskModel {
     );
   }
 
-  // Method to convert a SubtaskModel to JSON
   Map<String, dynamic> toJson() {
     return {
       'description': description,
@@ -98,7 +92,6 @@ class SubtaskModel {
   }
 }
 
-// ServicePreview Model
 class ServicePreview {
   final String? serviceName;
   final double? totalPrice;
@@ -110,7 +103,6 @@ class ServicePreview {
     this.milestoneProgress,
   });
 
-  // Factory method to create a ServicePreview from JSON
   factory ServicePreview.fromJson(Map<String, dynamic> json) {
     return ServicePreview(
       serviceName: json['serviceName'] as String?,
@@ -119,7 +111,6 @@ class ServicePreview {
     );
   }
 
-  // Method to convert a ServicePreview to JSON
   Map<String, dynamic> toJson() {
     return {
       'serviceName': serviceName,
@@ -128,12 +119,10 @@ class ServicePreview {
     };
   }
 
-  // Factory method to create a List of ServicePreview from JSON
   static List<ServicePreview> fromJsonList(List<dynamic> jsonList) {
     return jsonList.map((json) => ServicePreview.fromJson(json)).toList();
   }
 
-  // Method to convert a List of ServicePreview to JSON
   static List<Map<String, dynamic>> toJsonList(List<ServicePreview> previews) {
     return previews.map((preview) => preview.toJson()).toList();
   }

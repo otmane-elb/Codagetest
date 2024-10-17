@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codagetest/extentions/sizedbox_extention.dart';
 import 'package:codagetest/views/themes/app_animations.dart';
+import 'package:codagetest/views/themes/app_colors.dart';
 import 'package:codagetest/views/themes/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -26,11 +29,11 @@ class SubtaskWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: AppColors.black.withOpacity(0.03),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 5),
@@ -41,52 +44,76 @@ class SubtaskWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            isCompleted ? Icons.check_circle : Icons.circle,
-            color: isCompleted ? Colors.green : Colors.grey,
+            isCompleted ? Icons.check_circle : Icons.pending,
+            color: isCompleted ? AppColors.green : AppColors.orangeAccent,
           ),
           10.width,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  description,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
+                Text(description,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w400)),
                 5.height,
-                Text(status),
+                Text(status, style: Theme.of(context).textTheme.bodySmall),
                 5.height,
-                Text(date),
+                Text(date, style: Theme.of(context).textTheme.bodyMedium),
               ],
             ),
           ),
           10.width,
           Column(
             children: [
-              Text('\$$price'),
+              Text('\$$price',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(fontWeight: FontWeight.w400)),
               GestureDetector(
                 onTap: () {
                   showDialog(
                     context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Subtask Image'),
-                      content: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: CachedNetworkImage(
-                          imageUrl: AppImages.onlineServiceImage,
-                          placeholder: (context, url) => const SizedBox(
-                            width: 200,
-                            height: 200,
-                            child: Center(
-                              child: CircularProgressIndicator(),
-                            ),
+                    builder: (context) => BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                      child: AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: const BorderSide(
+                            color: AppColors.purpleAccent,
+                            width: 3,
                           ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          fit: BoxFit.cover,
+                        ),
+                        backgroundColor: AppColors.white.withOpacity(0.9),
+                        title: const Row(
+                          children: [
+                            Text(
+                              'Subtask Image',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        content: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: CachedNetworkImage(
+                            imageUrl: AppImages.onlineServiceImage,
+                            placeholder: (context, url) => const SizedBox(
+                              width: 200,
+                              height: 200,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    AppColors.brightBlue,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

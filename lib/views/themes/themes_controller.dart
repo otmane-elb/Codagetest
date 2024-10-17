@@ -8,24 +8,27 @@ class ThemesController {
     return ThemeData(
       brightness: Brightness.light,
       colorScheme: const ColorScheme.light(
-        primary: AppColors.white,
+        primary: AppColors.black,
       ),
       primaryColor: AppColors.white,
       fontFamily: AppFonts.monaSans,
-      unselectedWidgetColor: Colors.grey,
+      unselectedWidgetColor: AppColors.grey,
       scaffoldBackgroundColor: AppColors.white,
       textTheme: const TextTheme(
-        titleLarge: TextStyle(fontSize: 32),
-        titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         titleSmall: TextStyle(fontSize: 16),
-        bodyLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-        bodyMedium: TextStyle(fontSize: 14),
+        bodyLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          color: AppColors.grey600,
+        ),
         bodySmall: TextStyle(
-          fontSize: 8,
-          fontWeight: FontWeight.w400,
+          fontSize: 14,
+          color: AppColors.grey600,
         ),
         labelMedium: TextStyle(
-          fontSize: 10,
+          fontSize: 16,
           fontWeight: FontWeight.w400,
         ),
         labelSmall: TextStyle(
@@ -33,7 +36,7 @@ class ThemesController {
           fontWeight: FontWeight.w400,
           color: AppColors.black,
         ),
-        headlineSmall: TextStyle(),
+        headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         headlineMedium: TextStyle(),
         displayMedium: TextStyle(),
         labelLarge: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:codagetest/core/models/service_model.dart';
+import 'package:codagetest/extentions/sizedbox_extention.dart';
 import 'package:flutter/material.dart';
 
 class ServicePreviewWidget extends StatelessWidget {
@@ -25,28 +26,14 @@ class ServicePreviewWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            preview.serviceName??'',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Total Price: \$${preview.totalPrice?.toStringAsFixed(2)}',
-            style: const TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Progress: ${preview.milestoneProgress?.toStringAsFixed(0)}%',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
-            ),
-          ),
+          Text(preview.serviceName ?? '',
+              style: Theme.of(context).textTheme.titleMedium),
+          10.height,
+          Text('Total Price: \$${preview.totalPrice?.toStringAsFixed(2)}',
+              style: Theme.of(context).textTheme.titleSmall),
+          10.height,
+          Text('Progress: ${preview.milestoneProgress?.toStringAsFixed(0)}%',
+              style: Theme.of(context).textTheme.bodyMedium),
         ],
       ),
     );

@@ -1,25 +1,26 @@
 import 'package:codagetest/core/repositories/service_list_repo.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:codagetest/core/models/service_model.dart';
 
 class ServiceDetailViewModel extends GetxController {
-  final ServiceListRepo _serviceListRepo = ServiceListRepo();
+  final ServiceRepo _serviceListRepo = ServiceRepo();
 
-  var serviceDetail = Rxn<ServiceModel>(); // Observable that allows null values
-  var isLoading = true.obs; // Observable for loading state
+  var serviceDetail = Rxn<ServiceModel>();
+  var isLoading = true.obs;
 
-  // Function to fetch service details from API
   Future<void> fetchServiceDetail(String endpoint) async {
     try {
-      isLoading(true); // Set loading to true
       ServiceModel fetchedServiceDetail =
           await _serviceListRepo.fetchServiceDetail(endpoint);
-      serviceDetail.value = fetchedServiceDetail; // Update the service detail
+      serviceDetail.value = fetchedServiceDetail;
     } catch (e) {
-      print('Error fetching service detail: $e');
-      serviceDetail.value = null; // Set to null if there’s an error
+      if (kDebugMode) {
+        print('Error fetching service detail: $e');
+      }
+      serviceDetail.value = null;
     } finally {
-      isLoading(false); // Set loading to false after fetching
+      isLoading(false);
     }
   }
 }

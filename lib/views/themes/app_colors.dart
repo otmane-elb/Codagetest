@@ -14,7 +14,18 @@ class AppColors {
   static const Color mediumGray = Color(0xFF555555);
   static const Color brightBlue = Color(0xFF00A3E0);
   static const Color brightOrange = Color(0xFFFF7F50);
-  static const Color black = Color(0x00000000);
-  static Color grey800White = Colors.grey[800]!;
-  static Color grey500 = Colors.grey[500]!;
+  static const Color black = Color(0xFF000000);
+  static const Color grey800White = Color(0xFF424242);
+  static const Color grey500 = Color(0xFF9E9E9E);
+  static const Color orange = Color(0xFFFF9800);
+  static const Color grey600 = Color(0xFF757575);
+  static const Color grey = Color(0xFF9E9E9E);
+  static const Color purpleAccent = Color(0xFF7C4DFF);
+  static const Color redAccent = Color(0xFFFF5252);
+  static const Color orangeAccent = Color(0xFFFFAB40);
+  static const Color yellowAccent = Color(0xFFFFFF00);
+  static const Color greenAccent = Color(0xFF69F0AE);
+  static const Color amber = Color(0xFFFFC107);
+  static const Color blueAccent = Color(0xFF448AFF);
+  static const Color white70 = Color(0xB3FFFFFF);
 }

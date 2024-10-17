@@ -1,5 +1,6 @@
 import 'package:codagetest/extentions/sizedbox_extention.dart';
 import 'package:codagetest/views/themes/app_animations.dart';
+import 'package:codagetest/views/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -27,15 +28,15 @@ class GamifiedProgressBar extends StatelessWidget {
 
   Color _getProgressColor() {
     if (milestoneProgress >= 1.0) {
-      return Colors.greenAccent;
+      return AppColors.greenAccent;
     } else if (milestoneProgress >= 0.75) {
-      return Colors.orangeAccent;
+      return AppColors.orangeAccent;
     } else if (milestoneProgress >= 0.50) {
-      return Colors.amber;
+      return AppColors.amber;
     } else if (milestoneProgress >= 0.25) {
-      return Colors.blueAccent;
+      return AppColors.blueAccent;
     } else {
-      return Colors.redAccent;
+      return AppColors.redAccent;
     }
   }
 
@@ -45,16 +46,14 @@ class GamifiedProgressBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Milestone Progress Header
-        const Text(
+        Text(
           'Milestone Progress',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.orangeAccent, // More colorful header
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(color: AppColors.orange),
         ),
         10.height,
-        // Gamified Progress Bar with Gradient
         Stack(
           children: [
             Container(
@@ -63,9 +62,9 @@ class GamifiedProgressBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 gradient: const LinearGradient(
                   colors: [
-                    Colors.redAccent,
-                    Colors.orangeAccent,
-                    Colors.yellowAccent,
+                    AppColors.redAccent,
+                    AppColors.orangeAccent,
+                    AppColors.yellowAccent,
                   ],
                   stops: [0.0, 0.5, 1.0],
                 ),
@@ -80,7 +79,7 @@ class GamifiedProgressBar extends StatelessWidget {
                     height: 12,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Colors.greenAccent.withOpacity(0.8),
+                      color: AppColors.greenAccent.withOpacity(0.8),
                     ),
                   ),
                 ),
@@ -93,11 +92,10 @@ class GamifiedProgressBar extends StatelessWidget {
           children: [
             Text(
               '${(milestoneProgress * 100).toInt()}%',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.greenAccent,
-              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: AppColors.greenAccent),
             ),
             10.width,
             SizedBox(
@@ -111,11 +109,9 @@ class GamifiedProgressBar extends StatelessWidget {
             5.width,
             Text(
               _getProgressText(),
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: _getProgressColor(),
-              ),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: _getProgressColor(),
+                  ),
             ),
           ],
         ),
